@@ -6,6 +6,7 @@ import mustache from 'mustache-express';
 import router from './src/router/router.js';
 import requestLogger from './src/middleware/requestLogger.js';
 import errorHandler from './src/middleware/errorHandler.js';
+import sessionHandler from './src/middleware/sessionHandler.js';
 
 /* configure working directory path */
 const __filename = url.fileURLToPath(import.meta.url);
@@ -21,18 +22,21 @@ app.engine('html', mustache()); //initializes the templat engine
 app.set('view engine', 'html'); // use files with .html
 app.set('views', __dirname + '/views'); //sets the views folder to be used by render later on
 
+/* Register session handler for all requests */
+app.use(sessionHandler); // finns i src/middleware
+
 /* Set body to json coded */
 app.use(express.urlencoded({ extended: true })) // for html forms (extended is true by default, allows for form to json)
 app.use(express.json()); // transform request (data in) data to json
 
 /* Logger */
-app.use(requestLogger);
+app.use(requestLogger); // finns i src/middleware
 
 /* Resource routes */
-app.use(router);
+app.use(router); // Finns i src/router
 
 /* Error handling */
-app.use(errorHandler);
+app.use(errorHandler); // finns i src/middleware
 
 /* Server startup */
 async function afterWebContainerStarted() {

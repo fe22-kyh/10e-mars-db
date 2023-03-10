@@ -21,6 +21,7 @@ function createTodo(request, response) {
 }
 
 function viewHome(request, response) {
+  console.log(request.session.id);
   fetchAllTodos().then(data => response.render("home-page", { todos: data }));
 }
 

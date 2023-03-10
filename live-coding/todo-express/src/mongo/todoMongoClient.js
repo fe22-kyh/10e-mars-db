@@ -1,9 +1,9 @@
 import { MongoClient } from 'mongodb';
 
 let db = undefined;
-const appDatabaseName = "todo-express";
-const username = "<username>";
-const password = "<password>";
+const appDatabaseName = "hamster-project";
+const username = "fe22-edu-db-mongo";
+const password = "aS7vIW8xa84vB4VF";
 
 export function fetchCollection(name) {
   return fetchDatabase().collection(name);

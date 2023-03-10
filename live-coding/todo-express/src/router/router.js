@@ -1,5 +1,7 @@
 import express from 'express';
+import authController from '../controller/authController.js';
 import todoController from '../controller/todoController.js';
+import authFilter from '../filter/authFilter.js';
 import todoFilter from '../filter/todoFilter.js';
 
 const router = express.Router();
@@ -10,9 +12,18 @@ router.get("/showTodos/query", todoController.queryByTitle);
 
 router.get("/deleteTodo", todoController.deleteByTitle);
 
-router.get("/home", todoController.viewHome);
+router.get("/home", authFilter.authenticate, todoController.viewHome);
 
-router.post("/createTodo", todoFilter.malformedRequestBody, todoController.createTodo);
+const createTodoFilter = [authFilter.authenticate, todoFilter.malformedRequestBody];
+router.post("/createTodo", createTodoFilter, todoController.createTodo);
+
+
+/* authentication routes */
+router.get("/login", authController.showLoginPage);
+
+router.post("/login", authController.login);
+
+router.post("/logout", authController.logout);
 
 
 //Om Ingen annan get hanterade förfrågan

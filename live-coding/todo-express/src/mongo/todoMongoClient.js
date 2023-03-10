@@ -1,9 +1,9 @@
 import { MongoClient } from 'mongodb';
 
 let db = undefined;
-const appDatabaseName = "todos-express";
+const appDatabaseName = "todo-express";
 const username = "<username>";
-const password = "<pass>";
+const password = "<password>";
 
 export function fetchCollection(name) {
   return fetchDatabase().collection(name);

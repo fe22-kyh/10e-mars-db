@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 let db = undefined;
 const appDatabaseName = "hamster-project";
 const username = "fe22-edu-db-mongo";
-const password = "aS7vIW8xa84vB4VF"; /*Invalidated password, left purposely as an example */
+const password = "aS7vIW8xa84vB4VF"; /* Invalidated password, left purposely as an example */
 
 export function fetchCollection(name) {
   return fetchDatabase().collection(name);

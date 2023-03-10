@@ -2,8 +2,8 @@ import { MongoClient } from 'mongodb';
 
 let db = undefined;
 const appDatabaseName = "todos-express";
-const username = "fe22-edu-db-mongo";
-const password = "jD1RQ3zgvGGKKkIu";
+const username = "<username>";
+const password = "<pass>";
 
 export function fetchCollection(name) {
   return fetchDatabase().collection(name);
